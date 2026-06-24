@@ -1,0 +1,45 @@
+services:
+  # configuración del microservicio 1
+  API-SALUDO1:
+    image: node:18
+    container_name: microservice1
+    working_dir: /app
+    volumes:
+      - ./ms-1:/app:z
+    command: sh -c 'npm install && npm start'
+    expose:
+      - "3000"
+
+  # configuración 1 de la copia del microservicio 1
+  API-SALUDO1-1:
+    image: node:18
+    container_name: microservice1-1
+    working_dir: /app
+    volumes:
+      - ./ms-1:/app:z
+    command: sh -c 'npm install && npm start'
+    expose:
+      - "3000"
+
+  # configuración 2 de la copia del microservicio 2
+  API-SALUDO1-2:
+    image: node:18
+    container_name: microservice1-2
+    working_dir: /app
+    volumes:
+      - ./ms-1:/app:z
+    command: sh -c 'npm install && npm start'
+    expose:
+      - "3000"
+
+  # configuración de proxy reverse
+  nginx_proxy:
+    image: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro,z
+    depends_on:
+      - API-SALUDO1
+      - API-SALUDO1-1
+      - API-SALUDO1-2
