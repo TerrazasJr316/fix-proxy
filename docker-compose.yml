@@ -5,18 +5,18 @@ services:
     container_name: micro-service1
     working_dir: /app
     volumes:
-      - ./ms-1:/app:z
+      - ./micro-service:/app:z
     command: sh -c 'npm install && npm start'
     expose:
       - "3000" # SOLUCIÓN 3: abtracción de la tipología interna del sistema
 
   # configuración 1 de la copia del microservicio 1
-  mico-service1-1:
+  micro-service1-1:
     image: node:18
     container_name: micro-service1-1
     working_dir: /app
     volumes:
-      - ./ms-1:/app:z
+      - ./micro-service:/app:z
     command: sh -c 'npm install && npm start'
     expose:
       - "3000" # SOLUCIÓN 3: abtracción de la tipología interna del sistema
@@ -27,7 +27,7 @@ services:
     container_name: micro-service1-2
     working_dir: /app
     volumes:
-      - ./ms-1:/app:z
+      - ./micro-service:/app:z
     command: sh -c 'npm install && npm start'
     expose:
       - "3000" # SOLUCIÓN 3: abtracción de la tipología interna del sistema

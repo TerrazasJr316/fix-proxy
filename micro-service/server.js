@@ -1,9 +1,9 @@
 const express = require('express');
-const os = require('os');
+const os = require(`os`);
 const app = express();
 const PORT = 3000;
 
-app.get('/api/v1/saludo', (req, res) => {
+app.get('/api/v1/saludo', (res) => {
     res.json({
         message: "hola desde js",
         // SOLUCIÓN 5: demostración visual; muestra el id que recibió la petición
